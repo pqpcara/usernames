@@ -1,0 +1,38 @@
+{
+  "name": "@lookups/usernames",
+  "description": "https://github.com/pqpcara/usernames",
+  "version": "0.0.2",
+  "main": "build/index.js",
+  "module": "build/index.mjs",
+  "type": "module",
+  "homepage": "https://github.com/pqpcara/usernames",
+  "bugs": {
+    "url": "https://github.com/pqpcara/usernames/issues"
+  },
+  "publisher": "@pqpcara",
+  "publishConfig": {
+    "access": "public"
+  },
+  "files": [
+    "build"
+  ],
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "build": "tsc"
+  },
+  "keywords": [
+    "username",
+    "usernames",
+    "checker",
+    "discord",
+    "github"
+  ],
+  "author": "https://github.com/pqpcara",
+  "devDependencies": {
+    "tsx": "^4.20.6",
+    "typescript": "^5.9.3"
+  },
+  "dependencies": {
+    "puppeteer": "^24.25.0"
+  }
+}
