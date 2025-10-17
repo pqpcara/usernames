@@ -1,8 +1,8 @@
 # Usernames
 
 <p align="left">
-  <a href="https://www.npmjs.com/package/@muitaura/usernames"><img alt="npm version" src="https://img.shields.io/npm/v/%40muitaura%2Fusernames?color=blue" /></a>
-  <a href="https://www.npmjs.com/package/@muitaura/usernames"><img alt="npm downloads" src="https://img.shields.io/npm/dm/%40muitaura%2Fusernames" /></a>
+  <a href="https://www.npmjs.com/package/@lookups/usernames"><img alt="npm version" src="https://img.shields.io/npm/v/%40muitaura%2Fusernames?color=blue" /></a>
+  <a href="https://www.npmjs.com/package/@lookups/usernames"><img alt="npm downloads" src="https://img.shields.io/npm/dm/%40muitaura%2Fusernames" /></a>
   <img alt="node >= 18" src="https://img.shields.io/badge/node-%3E%3D18.0-43853d" />
 </p>
 
@@ -13,11 +13,11 @@ A username availability checker using Puppeteer. Currently, it only supports Git
 ## Installation
 
 ```bash
-npm install @muitaura/usernames
+npm install @lookups/usernames
 # or
-pnpm add @muitaura/usernames
+pnpm add @lookups/usernames
 # or
-yarn add @muitaura/usernames
+yarn add @lookups/usernames
 ```
 
 Requirements:
@@ -31,7 +31,7 @@ Requirements:
 ESM / TypeScript:
 
 ```ts
-import { Client } from "@muitaura/usernames";
+import { Client } from "@lookups/usernames";
 
 const client = new Client();
 
@@ -50,7 +50,7 @@ CommonJS (dynamic import):
 
 ```js
 (async () => {
-  const { Client } = await import("@muitaura/usernames");
+  const { Client } = await import("@lookups/usernames");
   const client = new Client();
   const result = await client.github("pqpcara");
   console.log(result);
@@ -87,7 +87,7 @@ Example output (Instagram):
 Check a single username:
 
 ```ts
-import { Client } from "@muitaura/usernames";
+import { Client } from "@lookups/usernames";
 
 const client = new Client();
 
@@ -105,7 +105,7 @@ if (res.available === true) {
 Check multiple usernames in parallel:
 
 ```ts
-import { Client } from "@muitaura/usernames";
+import { Client } from "@lookups/usernames";
 const client = new Client();
 
 async function checkMany(usernames: string[]) {
@@ -122,7 +122,7 @@ checkMany(["pqpcara", "muitaura"]).then(console.log);
 Gentle concurrency (helps avoid bot detection):
 
 ```ts
-import { Client } from "@muitaura/usernames";
+import { Client } from "@lookups/usernames";
 const client = new Client();
 
 async function serial(usernames: string[]) {
