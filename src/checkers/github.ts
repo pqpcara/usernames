@@ -1,5 +1,12 @@
 import puppeteer from "puppeteer";
-import { CheckResult } from "../core/client.js";
+
+interface CheckResult {
+  platform: string;
+  username: string;
+  available: boolean | null;
+  suggestions?: string | null;
+  message?: string | null;
+}
 
 function delay(min = 500, max = 1500) {
   return new Promise((resolve) => {
