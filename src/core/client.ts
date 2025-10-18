@@ -7,11 +7,17 @@ import { InstagramChecker } from "../types/social/instagram.js";
 import { GithubChecker } from "../types/social/github.js";
 import { MinecraftChecker } from "../types/games/minecraft.js";
 import { RobloxChecker } from "../types/games/roblox.js";
+import { discord } from "../checkers/social/discord.js";
+import { DiscordChecker } from "../types/social/discord.js";
 
 export class Client {
   public username: string | null = null;
 
   constructor() {}
+
+  async discord(username: string): Promise<DiscordChecker> {
+    return await discord(username);
+  }
 
   async github(username: string): Promise<GithubChecker> {
     return await github(username);

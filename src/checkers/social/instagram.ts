@@ -1,5 +1,6 @@
 import puppeteer from "puppeteer";
 import { InstagramChecker } from "../../types/social/instagram.js";
+import { delay } from "../../core/delay.js";
 
 const selectors = {
   validIcon:
@@ -9,12 +10,6 @@ const selectors = {
   errorMsg:
     "div.x1qjc9v5.x972fbf.x10w94by.x1qhh985.x14e42zd.x9f619.xxk16z8.x78zum5.xdt5ytf.x2lah0s.x1fhwpqd.x1gslohp.x14z9mp.xat24cr.x13fj5qh.xexx8yu.xyri2b.x18d9i69.x1c1uobl.x1n2onr6.x11njtxf",
 };
-
-function delay(min = 500, max = 1500) {
-  return new Promise((resolve) =>
-    setTimeout(resolve, Math.floor(Math.random() * (max - min + 1)) + min),
-  );
-}
 
 export async function instagram(username: string): Promise<InstagramChecker> {
   const browser = await puppeteer.launch({

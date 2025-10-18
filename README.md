@@ -6,7 +6,7 @@
 </p>
 
 Fast username availability checker for multiple platforms.
-Now supports **GitHub**, **Instagram**, **Roblox**, and **Minecraft**.
+Now supports **Discord**, **GitHub**, **Instagram**, **Roblox**, and **Minecraft**.
 
 ---
 
@@ -32,12 +32,13 @@ import { Client } from "@lookups/usernames";
 const client = new Client();
 
 async function main() {
+  const discord = await client.discord("alwayswealthy");
   const github = await client.github("pqpcara");
   const instagram = await client.instagram("muitaura");
   const roblox = await client.roblox("pqpcara");
   const minecraft = await client.minecraft("pqpcara");
 
-  console.log({ github, instagram, roblox, minecraft });
+  console.log({ discord, github, instagram, roblox, minecraft });
 }
 
 main();
@@ -52,6 +53,16 @@ CommonJS (dynamic import):
   const result = await client.github("pqpcara");
   console.log(result);
 })();
+```
+
+Example output (Discord):
+```json
+{
+  "platform": "discord",
+  "username": "alwayswealthy",
+  "available": false,
+  "message": "Username alwayswealthy is not available."
+}
 ```
 
 Example output (GitHub):
@@ -128,13 +139,14 @@ import { Client } from "@lookups/usernames";
 const client = new Client();
 
 async function checkMany(usernames: string[]) {
-  const [github, instagram] = await Promise.all([
+  const [discord, github, instagram, minecraft, roblox] = await Promise.all([
+    Promise.all(usernames.map((u) => client.discord(u))),
     Promise.all(usernames.map((u) => client.github(u))),
     Promise.all(usernames.map((u) => client.instagram(u))),
     Promise.all(usernames.map((u) => client.minecraft(u))),
     Promise.all(usernames.map((u) => client.roblox(u))),
   ]);
-  return { github, instagram, minecraft, roblox };
+  return { discord, github, instagram, minecraft, roblox };
 }
 
 checkMany(["pqpcara", "muitaura"]).then(console.log);
@@ -160,18 +172,14 @@ async function serial(usernames: string[]) {
 
 ## Supported Platforms
 
+- Roblox
 - GitHub
-  - Uses the official sign-up flow and reads `auto-check` UI validation
-  - May include platform suggestions when the username is taken
-  - If you get `available: null`, GitHub likely changed UI; update selectors
 - Instagram
-  - Interacts with the sign-up page and inspects the validation icons/messages
-  - UI classes change frequently; if results become `null`, refresh selectors
-  - Add jitter and keep concurrency low to minimize anti-bot triggers
+- Minecraft
+- Roblox
 
 Planned:
 - Twitter/X, TikTok, Reddit, and more (PRs welcome)
-
 
 ---
 

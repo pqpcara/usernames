@@ -1,11 +1,6 @@
 import puppeteer from "puppeteer";
 import { GithubChecker } from "../../types/social/github.js";
-
-function delay(min = 500, max = 1500) {
-  return new Promise((resolve) => {
-    setTimeout(resolve, Math.floor(Math.random() * (max - min + 1)) + min);
-  });
-}
+import { delay } from "../../core/delay.js";
 
 export async function github(username: string): Promise<GithubChecker> {
   const browser = await puppeteer.launch({
