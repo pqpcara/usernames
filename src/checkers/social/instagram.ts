@@ -1,12 +1,5 @@
 import puppeteer from "puppeteer";
-
-interface CheckResult {
-  platform: string;
-  username: string;
-  available: boolean | null;
-  message: string | null;
-  suggestions?: string | null;
-}
+import { InstagramChecker } from "../../types/social/instagram.js";
 
 const selectors = {
   validIcon:
@@ -23,7 +16,7 @@ function delay(min = 500, max = 1500) {
   );
 }
 
-export async function instagram(username: string): Promise<CheckResult> {
+export async function instagram(username: string): Promise<InstagramChecker> {
   const browser = await puppeteer.launch({
     headless: true,
     args: [

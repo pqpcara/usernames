@@ -1,12 +1,5 @@
 import puppeteer from "puppeteer";
-
-interface CheckResult {
-  platform: string;
-  username: string;
-  available: boolean | null;
-  suggestions?: string | null;
-  message?: string | null;
-}
+import { GithubChecker } from "../../types/social/github.js";
 
 function delay(min = 500, max = 1500) {
   return new Promise((resolve) => {
@@ -14,7 +7,7 @@ function delay(min = 500, max = 1500) {
   });
 }
 
-export async function github(username: string): Promise<CheckResult> {
+export async function github(username: string): Promise<GithubChecker> {
   const browser = await puppeteer.launch({
     headless: true,
     args: [

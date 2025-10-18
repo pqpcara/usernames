@@ -1,11 +1,12 @@
-# Usernames
+# @lookups/usernames
 
 <p align="left">
-  <a href="https://www.npmjs.com/package/@lookups/usernames"><img alt="npm version" src="https://img.shields.io/npm/v/%40muitaura%2Fusernames?color=blue" /></a>
-  <a href="https://www.npmjs.com/package/@lookups/usernames"><img alt="npm downloads" src="https://img.shields.io/npm/dm/%40muitaura%2Fusernames" /></a>
+  <a href="https://www.npmjs.com/package/@lookups/usernames"><img alt="npm version" src="https://img.shields.io/npm/v/%40lookups%2Fusernames?color=blue" /></a>
+  <a href="https://www.npmjs.com/package/@lookups/usernames"><img alt="npm downloads" src="https://img.shields.io/npm/dm/%40lookups%2Fusernames" /></a>
 </p>
 
-A username availability checker using Puppeteer. Currently, it only supports GitHub, but it's ready for new checkers for other platforms.
+Fast username availability checker for multiple platforms.
+Now supports **GitHub**, **Instagram**, **Roblox**, and **Minecraft**.
 
 ---
 
@@ -18,10 +19,6 @@ pnpm add @lookups/usernames
 # or
 yarn add @lookups/usernames
 ```
-
-Requirements:
-- Node.js 18+
-- Puppeteer downloads a compatible Chromium by default (unless configured otherwise)
 
 ---
 
@@ -37,9 +34,10 @@ const client = new Client();
 async function main() {
   const github = await client.github("pqpcara");
   const instagram = await client.instagram("muitaura");
+  const roblox = await client.roblox("pqpcara");
+  const minecraft = await client.minecraft("pqpcara");
 
-  console.log("GitHub:", github);
-  console.log("Instagram:", instagram);
+  console.log({ github, instagram, roblox, minecraft });
 }
 
 main();
@@ -79,6 +77,28 @@ Example output (Instagram):
 }
 ```
 
+Example output (Roblox):
+
+```json
+{
+  "platform": "roblox",
+  "username": "pqpcara",
+  "available": true,
+  "message": "Username is available"
+}
+```
+
+Example output (Minecraft):
+
+```json
+{
+  "platform": "minecraft",
+  "username": "pqpcara",
+  "available": true,
+  "message": "Username is available"
+}
+```
+
 ---
 
 ## Usage Examples
@@ -111,8 +131,10 @@ async function checkMany(usernames: string[]) {
   const [github, instagram] = await Promise.all([
     Promise.all(usernames.map((u) => client.github(u))),
     Promise.all(usernames.map((u) => client.instagram(u))),
+    Promise.all(usernames.map((u) => client.minecraft(u))),
+    Promise.all(usernames.map((u) => client.roblox(u))),
   ]);
-  return { github, instagram };
+  return { github, instagram, minecraft, roblox };
 }
 
 checkMany(["pqpcara", "muitaura"]).then(console.log);
@@ -131,29 +153,6 @@ async function serial(usernames: string[]) {
     await new Promise((r) => setTimeout(r, 500 + Math.random() * 700));
   }
   return out;
-}
-```
-
----
-
-## API Reference
-
-### Class: Client
-
-Creates a high-level client that exposes per-platform checkers.
-
-- `github(username: string): Promise<CheckResult>`
-- `instagram(username: string): Promise<CheckResult>`
-
-### Types
-
-```ts
-export interface CheckResult {
-  platform: string;            // "github" | "instagram" | ...
-  username: string;            // the username that was checked
-  available: boolean | null;   // true=available, false=taken, null=unknown
-  suggestions?: string | null; // platform-suggested alternatives (GitHub)
-  message?: string | null;     // human-readable status or error
 }
 ```
 
