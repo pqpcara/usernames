@@ -1,7 +1,7 @@
 {
   "name": "@lookups/usernames",
   "description": "https://github.com/pqpcara/usernames",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "main": "build/index.js",
   "module": "build/index.mjs",
   "type": "module",
@@ -25,7 +25,10 @@
     "usernames",
     "checker",
     "discord",
-    "github"
+    "github",
+    "instagram",
+    "minecraft",
+    "roblox"
   ],
   "author": "https://github.com/pqpcara",
   "devDependencies": {
