@@ -11,7 +11,7 @@ const unavailable_strings = [
 
 const available_strings = ["disponível", "available"];
 
-export async function discord(username: string): Promise<DiscordChecker> {
+export async function discord(username: string, suggestions?: boolean | null): Promise<DiscordChecker> {
   const browser = await puppeteer.launch({
     headless: true,
     args: [

@@ -2,7 +2,10 @@ import puppeteer from "puppeteer";
 import { GithubChecker } from "../../types/social/github.js";
 import { delay } from "../../core/delay.js";
 
-export async function github(username: string): Promise<GithubChecker> {
+export async function github(
+  username: string,
+  suggestions?: { enabled?: boolean; amount?: number; verification?: boolean }
+): Promise<GithubChecker> {
   const browser = await puppeteer.launch({
     headless: true,
     args: [
@@ -34,7 +37,7 @@ export async function github(username: string): Promise<GithubChecker> {
 
     let available: boolean | null = null;
     let message: string | null = null;
-    let suggestions: string | null = null;
+    let usernames: string | null = null;
 
     const errorCheck = await page.$("auto-check.errored");
     const successCheck = await page.$("auto-check.successed");
@@ -46,13 +49,15 @@ export async function github(username: string): Promise<GithubChecker> {
       if (textEl)
         message = await page.evaluate((el: any) => el.innerText.trim(), textEl);
 
-      const suggestionsEl = await page.$(".js-suggested-usernames-container");
-      if (suggestionsEl) {
-        const suggestionText = await page.evaluate(
-          (el: any) => el.innerText.trim(),
-          suggestionsEl,
-        );
-        suggestions = suggestionText;
+      if (suggestions?.enabled) {
+        const suggestionsEl = await page.$(".js-suggested-usernames-container");
+        if (suggestionsEl) {
+          const suggestionText = await page.evaluate(
+            (el: any) => el.innerText.trim(),
+            suggestionsEl,
+          );
+          usernames = suggestionText;
+        }
       }
     } else if (successCheck) {
       available = true;
@@ -69,7 +74,7 @@ export async function github(username: string): Promise<GithubChecker> {
       platform: "github",
       username,
       available,
-      suggestions,
+      suggestions: usernames,
       message,
     };
   } catch (err) {
