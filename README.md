@@ -29,7 +29,13 @@ ESM / TypeScript:
 ```ts
 import { Client } from "@lookups/usernames";
 
-const client = new Client();
+const client = new Client({
+  suggestions: {
+    enabled: true,
+    amount: 3,
+    verification: false
+  }
+});
 
 async function main() {
   const discord = await client.discord("alwayswealthy");
@@ -49,7 +55,13 @@ CommonJS (dynamic import):
 ```js
 (async () => {
   const { Client } = await import("@lookups/usernames");
-  const client = new Client();
+  const client = new Client({
+    suggestions: {
+      enabled: true,
+      amount: 3,
+      verification: false
+    }
+  });
   const result = await client.github("pqpcara");
   console.log(result);
 })();
@@ -119,7 +131,13 @@ Check a single username:
 ```ts
 import { Client } from "@lookups/usernames";
 
-const client = new Client();
+const client = new Client({
+  suggestions: {
+    enabled: true,
+    amount: 3,
+    verification: false
+  }
+});
 
 const res = await client.github("pqpcara");
 if (res.available === true) {
@@ -136,7 +154,13 @@ Check multiple usernames in parallel:
 
 ```ts
 import { Client } from "@lookups/usernames";
-const client = new Client();
+const client = new Client({
+  suggestions: {
+    enabled: true,
+    amount: 3,
+    verification: false
+  }
+});
 
 async function checkMany(usernames: string[]) {
   const [discord, github, instagram, minecraft, roblox] = await Promise.all([
@@ -156,7 +180,13 @@ Gentle concurrency (helps avoid bot detection):
 
 ```ts
 import { Client } from "@lookups/usernames";
-const client = new Client();
+const client = new Client({
+  suggestions: {
+    enabled: true,
+    amount: 3,
+    verification: false
+  }
+});
 
 async function serial(usernames: string[]) {
   const out = [];
