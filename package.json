@@ -1,7 +1,7 @@
 {
   "name": "@lookups/usernames",
   "description": "https://github.com/pqpcara/usernames",
-  "version": "0.0.5",
+  "version": "0.0.7",
   "main": "build/index.js",
   "module": "build/index.mjs",
   "type": "module",
