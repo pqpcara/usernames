@@ -4,4 +4,5 @@ export interface MinecraftChecker {
   username: string;
   available: boolean | null;
   message: string;
+  suggestions?: string | null;
 }

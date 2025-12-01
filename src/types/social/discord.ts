@@ -4,4 +4,5 @@ export interface DiscordChecker {
   available: boolean | null;
   message?: string | null;
   error?: string | null;
+  suggestions?: string | null;
 }

@@ -13,4 +13,5 @@ export interface RobloxChecker {
   available: boolean | null;
   message: string | null;
   userInfo?: RobloxUserInfo | null;
+  suggestions?: string | null;
 }
