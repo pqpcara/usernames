@@ -1,3 +1,13 @@
+# Resume
+
+---
+
+This project will not have any further updates, sorry to inform you of this for now, this project was purchased by someone 20 days ago.
+If you liked the project and still want to find out how the code was written, it will still be available!
+To everyone who gave suggestions before, I did everything you asked for, suggestions for usernames, configProxy and optimization, the system was not opening another browser with each username in the new update. It just wasn't posted, sorry!
+
+---
+
 # @lookups/usernames
 
 <p align="left">
