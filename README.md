@@ -1,3 +1,13 @@
+# Resume
+
+---
+
+This project will not have any further updates, sorry to inform you of this for now, this project was purchased by someone 20 days ago.
+If you liked the project and still want to find out how the code was written, it will still be available!
+To everyone who gave suggestions before, I did everything you asked for, suggestions for usernames, configProxy and optimization, the system was not opening another browser with each username in the new update. It just wasn't posted, sorry!
+
+---
+
 # @lookups/usernames
 
 <p align="left">
@@ -29,7 +39,13 @@ ESM / TypeScript:
 ```ts
 import { Client } from "@lookups/usernames";
 
-const client = new Client();
+const client = new Client({
+  suggestions: {
+    enabled: true,
+    amount: 3,
+    verification: false
+  }
+});
 
 async function main() {
   const discord = await client.discord("alwayswealthy");
@@ -49,7 +65,13 @@ CommonJS (dynamic import):
 ```js
 (async () => {
   const { Client } = await import("@lookups/usernames");
-  const client = new Client();
+  const client = new Client({
+    suggestions: {
+      enabled: true,
+      amount: 3,
+      verification: false
+    }
+  });
   const result = await client.github("pqpcara");
   console.log(result);
 })();
@@ -119,7 +141,13 @@ Check a single username:
 ```ts
 import { Client } from "@lookups/usernames";
 
-const client = new Client();
+const client = new Client({
+  suggestions: {
+    enabled: true,
+    amount: 3,
+    verification: false
+  }
+});
 
 const res = await client.github("pqpcara");
 if (res.available === true) {
@@ -136,7 +164,13 @@ Check multiple usernames in parallel:
 
 ```ts
 import { Client } from "@lookups/usernames";
-const client = new Client();
+const client = new Client({
+  suggestions: {
+    enabled: true,
+    amount: 3,
+    verification: false
+  }
+});
 
 async function checkMany(usernames: string[]) {
   const [discord, github, instagram, minecraft, roblox] = await Promise.all([
@@ -156,7 +190,13 @@ Gentle concurrency (helps avoid bot detection):
 
 ```ts
 import { Client } from "@lookups/usernames";
-const client = new Client();
+const client = new Client({
+  suggestions: {
+    enabled: true,
+    amount: 3,
+    verification: false
+  }
+});
 
 async function serial(usernames: string[]) {
   const out = [];
